@@ -24,7 +24,6 @@ void create_blosum_mat(){
 
 void reset_states(){
     int default_value = -999999;
-    // initialize with -99999999999
     for (int i = 0; i < 256; i++){
         for (int j = 0; j < 256; j++){
             mx[i][j] = default_value;
@@ -82,6 +81,7 @@ int main(){
         }
     }
 
+    // Output matrix hasil algoritma
     for (int i = 0; i < b.length()+1; i++){
         for (int j = 0; j < a.length()+1; j++){
             cout << '(' << mx[i][j] << ')' << ' ';
@@ -95,6 +95,8 @@ int main(){
         }
         cout << endl;
     }
+
+    // Backtracking
     string atas;
     string bawah;
     int now_i = b.length();
@@ -103,7 +105,6 @@ int main(){
     int b_now = b.length()-1;
     int now = 0;
     while ((now_i != 0) || (now_j != 0)){
-        cout << now_i << ' ' << now_j << endl;
         if (before[now_i][now_j][0] == now_i - 1){
             bawah = bawah + (b[b_now]);
             b_now--;
@@ -120,6 +121,8 @@ int main(){
         now_i = before[now_i][now_j][0];
         now_j = before[temp][now_j][1];
     }
+
+    // Output hasil
     for (int i = atas.length()-1; i > -1 ; i--){
         cout << atas[i];
     }
